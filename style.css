@@ -5,13 +5,13 @@ body {
 
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    box-sizing : border-box;
+    box-sizing: border-box;
 }
 
 /* HEADER */
 #hcorps {
     background-color: rgb(158, 150, 150);
-    height: 80px;
+    min-height: 80px;
     width: 100%;
 
     display: flex;
@@ -30,9 +30,6 @@ body {
 /* LOGO */
 #Logo {
     height: 50px;
-    position: relative;
-    bottom: 8px;
-    right: 10px;
 }
 
 /* NAVIGATION */
@@ -46,11 +43,10 @@ body {
     font-size: 18px;
     color: white;
     position: relative;
-    right: 6rem;
     transition: 0.3s;
 }
 
-/* Effet underline animé */
+/* underline animé */
 .liens a::after {
     content: "";
     position: absolute;
@@ -66,7 +62,6 @@ body {
     width: 100%;
 }
 
-/* Hover */
 .liens a:hover {
     color: #800020;
     transform: scale(1.1);
@@ -76,4 +71,50 @@ body {
 h1 {
     text-align: center;
     font-size: 50px;
+}
+
+@media (max-width: 768px) {
+
+    #hcorps {
+        flex-direction: column;
+        padding: 15px;
+        gap: 10px;
+    }
+
+    #Logo {
+        height: 40px;
+    }
+
+    .liens {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .liens a {
+        font-size: 20px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    #Logo {
+        height: 45px;
+    }
+
+    .liens {
+        gap: 25px;
+    }
+
+    .liens a {
+        font-size: 17px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
 }
