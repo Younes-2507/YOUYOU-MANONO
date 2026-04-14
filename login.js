@@ -3,33 +3,32 @@ import { supabase } from './supabase-client.js'
 const login = document.getElementById('login');
 
 async function connexion(email, mdp) {
-    const t = await supabase.auth.getSession();
-    console.log("SESSION:", t);
     const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: mdp,
     });
-    
-    if(error) return {error: true, message: error};
-    
-    return {error: false, message: data};
+
+    if (error) {
+        return { error: true, message: error.message };
+    }
+
+    return { error: false, message: data };
 }
 
-login?.addEventListener('click', async function() {
+login?.addEventListener('click', async function(e) {
+    e.preventDefault(); 
     const email = document.getElementById("email").value;
     const mdp = document.getElementById("mdp").value;
-    console.log(email, mdp)
-    let co = await connexion(email, mdp);
-    if(co.error) {
-        // Une erreur
-        console.log(co.message)
-        let error = document.getElementById("error");
-        error.style.display = "block";
-        error.textContent = `${create.error.message}`
 
+    let co = await connexion(email, mdp);
+
+    if (co.error) {
+        let errorDiv = document.getElementById("error");
+        errorDiv.style.display = "block";
+        errorDiv.textContent = co.message; // 
     } else {
-        // Pas d'erreur
-        console.log("ok ;)")
-        return document.location.href = 'index.html'
+        console.log("Connexion réussie");
+
+        window.location.href = "index.html";
     }
 });
